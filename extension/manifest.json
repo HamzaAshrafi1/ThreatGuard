@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "PhishGuard",
+  "version": "2.0",
+  "description": "Real-time phishing detection with AI + online learning",
+
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+
+  "host_permissions": [
+    "https://web.whatsapp.com/*",
+    "https://mail.google.com/*",
+    "http://127.0.0.1:8000/*"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "action": {
+    "default_popup": "popup.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://web.whatsapp.com/*",
+        "https://mail.google.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>PhishGuard</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      width: 340px;
+      padding: 12px;
+      background: #0f172a;
+      color: #e5e7eb;
+      margin: 0;
+    }
+
+    /* ── Header ── */
+    h2 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .clear-btn {
+      font-size: 11px;
+      background: #ef4444;
+      border: none;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .clear-btn:hover {
+      background: #dc2626;
+    }
+
+    /* ── Health bar ── */
+    .health-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: #64748b;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dot-online  { background: #22c55e; }
+    .dot-offline { background: #ef4444; }
+    .dot-pending { background: #64748b; }
+
+    /* ── Cards ── */
+    .card {
+      background: #1e293b;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border-left: 5px solid;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .high   { border-color: #ef4444; }
+    .medium { border-color: #f59e0b; }
+    .low    { border-color: #22c55e; }
+
+    .platform {
+      font-size: 11px;
+      font-weight: bold;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    /* ── Score row: score + mode badge side by side ── */
+    .score-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .score {
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    /* ── Mode badges ── */
+    .badge {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .badge-hybrid   { background: #1d4ed8; color: #bfdbfe; }
+    .badge-fallback { background: #78350f; color: #fde68a; }
+    .badge-unknown  { background: #374151; color: #9ca3af; }
+
+    .reasons {
+      font-size: 11px;
+      color: #94a3b8;
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+
+    .time {
+      font-size: 10px;
+      color: #475569;
+    }
+
+    /* ── Empty state ── */
+    .empty {
+      text-align: center;
+      margin-top: 30px;
+      color: #64748b;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>
+    ⚠️ PhishGuard
+    <button class="clear-btn" id="clearBtn">Clear</button>
+  </h2>
+
+  <!-- Server health indicator -->
+  <div class="health-bar">
+    <span class="dot dot-pending" id="healthDot"></span>
+    <span id="healthTxt">Checking server…</span>
+  </div>
+
+  <div id="logs"></div>
+
+  <script src="popup.js"></script>
+
+</body>
+</html>
